@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MVVM Sample App</string>
+    <string name="mvvm">MVVM</string>
+    <string name="architect_your_app_with">architect your app with</string>
+    <string name="jay_gmail_com">jay@gmail.com</string>
+    <string name="password">password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account_nsign_up_here">Don\'t have an account?\nSign Up Here</string>
+    <string name="jay_sharma">Jay Sharma</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account_nsign_in_here">Already have an account?\nSign in Here</string>
+    <string name="school">school</string>
+    <string name="users">Users</string>
+    <string name="home">Home</string>
+    <string name="welcome">Welcome</string>
+    <string name="quotes">Quotes</string>
+</resources>
