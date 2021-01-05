@@ -1,16 +1,14 @@
-
-
 package com.jay.kotlin.projects.mvvmsampleapp.ui.auth
 
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.jay.kotlin.projects.mvvmsampleapp.R
 import com.jay.kotlin.projects.mvvmsampleapp.databinding.ActivityLoginBinding
-import com.jay.kotlin.projects.mvvmsampleapp.ui.home.HomeActivity
 import com.jay.kotlin.projects.mvvmsampleapp.util.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.launch
@@ -42,70 +40,52 @@ class LoginActivity() : AppCompatActivity()/*,AuthListener*/, KodeinAware {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
 
-
-
-        viewModel.getLoggedInUser().observe(this, { user->
-            if(user != null){
-                Intent(this, HomeActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(it)
-                }
-               /* val intent = Intent(this, HomeActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    //finish()
-                }*/
-            }
-        })
-
-        binding.buttonSignIn.setOnClickListener {
+        binding.buttonLogin.setOnClickListener {
             loginUser()
         }
 
-        binding.textViewSignUp.setOnClickListener {
-            startActivity(Intent(this, RegistrationActivity::class.java))
-            finish()
-        }
+
     }
 
     private fun loginUser(){
-        val email = binding.editTextEmail.text.toString().trim()
+        val email = binding.editTextUserName.text.toString().trim()
         val password = binding.editTextPassword.text.toString().trim()
 
         when {
             email.isEmpty() -> {
-                edit_text_email.error = "Invalid email!!!"
-                edit_text_email.requestFocus()
+                editTextUserName.error = "Invalid email!!!"
+                editTextUserName.requestFocus()
                 return
             }
             password.isEmpty() -> {
-                edit_text_password.error = "Invalid password!!!"
-                edit_text_password.requestFocus()
+                editTextPassword.error = "Invalid password!!!"
+                editTextPassword.requestFocus()
                 return
             }
             else -> {
-                progress_bar.show()
+                progressBar.show()
                 lifecycleScope.launch {
                     try{
                         val authResponse =  viewModel.userLogin(email, password)
                         if(authResponse.user != null){
 
-                            viewModel.saveLoggedInUser(authResponse.user)
-                            progress_bar.hide()
+                            //viewModel.saveLoggedInUser(authResponse.user)
+                                Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_LONG).show()
+                            progressBar.hide()
                         }
                         else{
-                            progress_bar.hide()
+                            progressBar.hide()
                             binding.rootLayout.snackbar(authResponse.message!!)
                         }
                     }
                     catch (e: ApiException){
                         e.message?.let { binding.rootLayout.snackbar(it) }
-                        progress_bar.hide()
+                        progressBar.hide()
                         e.printStackTrace()
                     }
                     catch (e: NoInternetException){
                         e.message?.let { binding.rootLayout.snackbar(it) }
-                        progress_bar.hide()
+                        progressBar.hide()
                         e.printStackTrace()
                     }
                 }

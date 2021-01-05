@@ -3,7 +3,6 @@
     <string name="mvvm">MVVM</string>
     <string name="architect_your_app_with">architect your app with</string>
     <string name="jay_gmail_com">jay@gmail.com</string>
-    <string name="password">password</string>
     <string name="forget_password">Forget Password?</string>
     <string name="sign_in">Sign In</string>
     <string name="don_t_have_an_account_nsign_up_here">Don\'t have an account?\nSign Up Here</string>
@@ -16,4 +15,10 @@
     <string name="home">Home</string>
     <string name="welcome">Welcome</string>
     <string name="quotes">Quotes</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="remember_my_username">Remember my username</string>
+    <string name="continue_to_login">CONTINUE TO LOGIN</string>
+    <string name="by_using_this_app_you_agree_to_cbs_s_terms_of_use_and_privacy_policy">By using this app you agree to CBS\'s <u>Terms of Use</u> and <u>Privacy Policy</u></string>
 </resources>

@@ -5,11 +5,9 @@ import com.jay.kotlin.projects.mvvmsampleapp.data.db.AppDatabase
 import com.jay.kotlin.projects.mvvmsampleapp.data.network.MyApi
 import com.jay.kotlin.projects.mvvmsampleapp.data.network.NetworkConnectionInterceptor
 import com.jay.kotlin.projects.mvvmsampleapp.data.preferences.PreferenceProvider
-import com.jay.kotlin.projects.mvvmsampleapp.data.repositories.QuotesRepository
 import com.jay.kotlin.projects.mvvmsampleapp.data.repositories.UserRepository
 import com.jay.kotlin.projects.mvvmsampleapp.ui.auth.AuthViewModelFactory
-import com.jay.kotlin.projects.mvvmsampleapp.ui.home.profile.ProfileViewModelFactory
-import com.jay.kotlin.projects.mvvmsampleapp.ui.home.quotes.QuotesViewModelFactory
+
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -40,17 +38,8 @@ class MVVMApplication :  Application(), KodeinAware{
         bind() from provider {
             AuthViewModelFactory(instance())
         }
-        bind() from provider {
-            ProfileViewModelFactory(instance())
-        }
         bind() from singleton {
            PreferenceProvider(instance()) // Using both MyApi and AppDatabase in UserRepository
-        }
-        bind() from singleton {
-            QuotesRepository(instance(), instance(), instance())
-        }
-        bind() from provider {
-            QuotesViewModelFactory(instance())
         }
     }
 }

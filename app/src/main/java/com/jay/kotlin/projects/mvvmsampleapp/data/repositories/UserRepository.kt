@@ -28,8 +28,4 @@ class UserRepository(
         return apiRequest { api.userRegister(email, password, name, school) }
     }
 
-    suspend fun saveUser(user: User) = db.getUserDao().upsert(user)//User.kt under db/entities package
-
-    fun getUser() = db.getUserDao().getUser()
-
 }

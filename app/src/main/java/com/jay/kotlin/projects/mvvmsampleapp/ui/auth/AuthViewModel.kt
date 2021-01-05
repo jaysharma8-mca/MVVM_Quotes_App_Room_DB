@@ -1,14 +1,8 @@
 package com.jay.kotlin.projects.mvvmsampleapp.ui.auth
 
-import android.content.Intent
-import android.view.View
 import androidx.lifecycle.ViewModel
 import com.jay.kotlin.projects.mvvmsampleapp.data.db.entities.User
-import com.jay.kotlin.projects.mvvmsampleapp.data.network.responses.AuthResponse
 import com.jay.kotlin.projects.mvvmsampleapp.data.repositories.UserRepository
-import com.jay.kotlin.projects.mvvmsampleapp.util.ApiException
-import com.jay.kotlin.projects.mvvmsampleapp.util.Coroutines
-import com.jay.kotlin.projects.mvvmsampleapp.util.NoInternetException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -23,9 +17,7 @@ class AuthViewModel(
     var name : String? = null
     var school: String? = null*/
 
-    var authListener : AuthListener ? = null
-
-    fun getLoggedInUser() = repository.getUser()
+    //var authListener : AuthListener ? = null
 
     suspend fun userLogin(
         email: String,
@@ -34,7 +26,6 @@ class AuthViewModel(
         repository.userLogin(email, password)
     }
 
-    suspend fun saveLoggedInUser(user: User) = repository.saveUser(user)
 
 
     suspend fun userRegister(
